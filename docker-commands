@@ -1,0 +1,291 @@
+Verify Docker Version
+=========================
+# docker version
+
+View System Wide Information
+=========================
+# docker info
+
+Search the Images
+=========================
+
+# docker search <Image name> 
+# docker search ubuntu
+
+Download Docker Container Images
+=========================
+
+# docker pull <Image name:tag>
+# docker pull ubuntu:20.04
+# docker pull ubuntu:22.04
+
+
+# docker pull centos:8
+# docker pull nginx  
+
+
+
+View Downloaded Docker Container Images
+========================================
+
+
+# docker image ls 
+		(or )
+# docker images
+
+
+
+# docker run -d --name=mynginx nginx
+
+Type exit to stop / shutdown the container and if want to get out from the container without stopping it then type “ctrl+p+q”
+
+ 
+
+
+
+Run Container in detach mode
+============================
+
+#docker run -it -d --name=httpd-container httpd
+
+View All Running Containers
+============================
+
+# docker ps
+
+View all running along with exited or stopped containers
+========================================================
+
+#docker ps -a
+
+
+publish port
+===============
+docker run -d -p <host port>:<container port> --name=httpd-container httpd
+docker run -d -p 8081:80 --name=httpd-container httpd
+docker run -d -p 8082:80--name=httpd-container nginx
+
+
+View latest container
+=======================
+#docker ps -l
+
+
+
+Container Console Access
+=========================
+# docker exec -it <container name or id> /bin/bash
+
+# docker exec -it httpd-container /bin/bash
+
+
+
+Start, Stop, Restart and Kill Containers
+==================================================
+
+# docker stop <container name or id>
+# docker stop httpd-container
+
+# docker start <container name or id>
+
+# docker restart <container name or id>
+ 
+# docker kill <container name or id>
+
+#docker pause 
+
+docker unpause
+
+Remove a Container
+=========================
+# docker stop nginx-container
+# docker rm nginx-container
+
+To remove a running container forcefully then use ‘-f’ option in docker rm command
+
+# docker rm -f nginx-container
+
+
+Remove Docker Container Images
+==============================
+
+# docker rmi ubuntu:20.04
+# docker rmi 54c9d81cbb44
+
+
+
+
+
+
+
+
+Check the container details
+===============================
+
+# docker inspect {container_name_or_container_id}
+
+# docker container inspect {container_name_or_container_id}
+
+
+
+
+
+
+
+View Logs from the Container
+====================================
+# docker logs {container_name_or_container_id}
+
+# docker logs nginx-container
+
+To view the live logs use ‘-f’ option in docker logs command
+#docker logs -f nginx-container
+
+To view last 10 logs from a container, run
+#docker logs --tail 10 nginx-container
+
+
+
+
+
+
+
+Copy files/folder to Container
+====================================
+
+#docker cp index.html mynginx-container:/usr/share/nginx/html
+
+#docker cp index.html httpd-container:/usr/local/apache2/htdocs
+
+From container
+-----------------
+
+#docker cp httpd-container:/usr/local/apache2/htdocs/test .
+
+
+
+
+
+Check the image details
+===============================
+
+# docker image inspect {Image_Name OR Image_id}
+
+
+
+
+
+View History of a Docker Image
+====================================
+
+# docker history {Image_Name OR Image_id}
+# docker history nginx-container
+ 
+
+
+
+
+
+
+
+
+
+
+
+Commit Changes to Image
+====================================
+#docker commit [container_id] [new_image_name:tag]
+
+Set Tag to Docker Image
+====================================
+docker tag source_image{:tag}  target_image{:tag}
+
+
+
+
+
+Save and Load Docker Container Image
+====================================
+
+
+ To save a docker image to a tar file
+--------------------------------------------
+
+ # docker save nginx -o mynginx.tar
+
+
+
+To load a docker image from a tar file
+----------------------------------------
+
+# docker load -i mynginx.tar
+ 
+
+
+
+
+
+Display Container(s) Resource Usage Statistics
+===============================================
+
+# docker stats
+
+
+
+
+To view stats of a specific container
+------------------------------------------
+
+# docker stats nginx-container
+
+
+
+
+
+Resource usage statistics without live streaming
+---------------------------------------------------
+
+# docker stats --no-stream
+
+
+
+
+
+display the running processes of a container
+-------------------------------------------------
+
+
+# docker top {Container_Name_OR_ID}
+
+# docker top httpd-container
+
+
+
+
+
+
+
+docker port container-name
+
+docker rename old_name new_name
+
+
+
+
+
+
+
+
+
+
+volume create
+docker volume create dev-mysql-data
+docker volume ls
+
+
+create mysql
+docker run --name mysql-container-dev -e MYSQL_ROOT_PASSWORD=redhat -d -v dev-mysql-data:/var/lib/mysql mysql
+
+
+
+
