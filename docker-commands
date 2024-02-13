@@ -261,6 +261,39 @@ display the running processes of a container
 
 
 
+volume create
+================
+docker volume create dev-mysql-data
+docker volume ls
+
+
+create mysql
+docker run --name mysql-container-dev -e MYSQL_ROOT_PASSWORD=redhat -d -v dev-mysql-data:/var/lib/mysql mysql
+
+
+
+
+
+docker network
+===================
+
+docker network ls
+ docker network inspect my-network
+docker network create --help
+docker network create --driver bridge --subnet 192.168.1.0/24 --gateway 192.168.1.1 my-network2
+ifconfig
+docker network ls
+docker network inspect my-network2
+docker run -d --name mynginx -p 8888:80 --network my-network2 nginx
+docker ps
+docker inspect mynginx
+docker network ls
+docker network create  --subnet 192.168.2.0/24 --gateway 192.168.2.1 my-network3
+docker network ls
+docker ps
+docker inspect mynginx
+docker network connect my-network3 mynginx
+docker inspect mynginx
 
 
 
